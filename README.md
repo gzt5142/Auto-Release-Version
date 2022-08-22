@@ -16,5 +16,10 @@ Upon such a PR/merge:
   * If neither found, increment patch number
 * A sanitized version of the repo is zipped up and associated as a release asset. 
 
-The example release shows a PR merge from <kbd>dev</kbd> to <kbd>main</kbd> with
-`SemVer:Major++` label applied. 
+The example [release](https://github.com/gzt5142/Auto-Release-Version/releases/tag/v1.0.0)
+shows a PR merge from <kbd>dev</kbd> to <kbd>main</kbd> with `SemVer:Major++` label applied. 
+
+The version number is not tracked in the repo files.  Its state is maintained via
+the medium of the git tags assigned to the main branch. SemVer tag strings are constructed
+with 'v' plus major, minor, and patch numbers (integers between 0 and 99). 
+
