@@ -20,7 +20,7 @@ name: Build a release and increment SemVer upon pr/merge to main branch
 # increment based on labels associated with the PR.  These labels have 
 # specific names: 
 #   - 'SemVer:Major++' == Bump the Major part of the SemVer
-#   - 'SemVer:Major++' == Bump the Minor part of the SemVer
+#   - 'SemVer:Minor++' == Bump the Minor part of the SemVer
 # If neither of those labels are found on the PR, then the patch number 
 # is incremented. 
  
