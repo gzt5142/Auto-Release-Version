@@ -116,7 +116,7 @@ jobs:
           cd ../
           dname=`basename ${GITHUB_REPOSITORY}`
           echo "Creating ZIP archive:  ${ZIPNAME}"
-          sed -e '/^#/d' -e 's!^!./${dname}/!' -e 's/\s*$//' < ${dname}/environment_setup/manifest.txt > /tmp/manifest.txt
+          sed -e '/^#/d' -e "s!^!./${dname}/!" -e 's/\s*$//' < ${dname}/environment_setup/manifest.txt > /tmp/manifest.txt
           tar --files-from /tmp/manifest.txt -cvf - | gzip > /tmp/${ZIPNAME}
 
 
