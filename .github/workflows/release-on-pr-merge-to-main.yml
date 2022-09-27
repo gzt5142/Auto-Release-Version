@@ -31,7 +31,7 @@ on:
     branches: [ "main" ]
 
 env:
-    ZIPNAME: SemanticVersioned-Bundle.zip
+    ZIPNAME: HyTEST_EnvSetUp.tar.gz
     ## See the 'makezip' step below
 
 jobs:
@@ -103,7 +103,7 @@ jobs:
           release_name: "v${{ steps.nextver.outputs.result }}"
           tag_name: "v${{ steps.nextver.outputs.result }}"
 
-      - name: Zip a sanitized version of this repo
+      - name: tar/Zip a sanitized version of this repo
         id:   makezip
         # This step is a simple sanitizing and archiving of the repo dir.  
         # If you would like to do something more complex, it would be good to 
@@ -113,10 +113,12 @@ jobs:
         # this release.
         run: |
           echo ${{ steps.nextver.outputs.result }} > VERSION
-          rm -fr ./.git ./.vscode ./.github
           cd ../
+          dname=`basename ${GITHUB_REPOSITORY}`
           echo "Creating ZIP archive:  ${ZIPNAME}"
-          zip -r /tmp/${ZIPNAME} `basename ${GITHUB_REPOSITORY}`
+          sed -e '/^#/d' -e 's!^!./${dname}/!' -e 's/\s*$//' < ${dname}/environment_setup/manifest.txt > /tmp/manifest.txt
+          tar --files-from /tmp/manifest.txt -cvf - | gzip > /tmp/${ZIPNAME}
+
 
       - name: Upload ZIP package and bind to release.
         id:   uploadzip
